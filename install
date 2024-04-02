@@ -1,8 +1,7 @@
 apt update && apt upgrade -y
 apt install -y python
 
-bash -c 'cat > /usr/local/bin/ws.py <<EOF
-
+cat <<END >> /usr/local/bin/ws.py
 import socket, threading, thread, select, signal, sys, time, getopt
 
 LISTENING_ADDR = '0.0.0.0'
@@ -267,7 +266,7 @@ def main(host=LISTENING_ADDR, port=LISTENING_PORT):
 #######    parse_args(sys.argv[1:])
 if __name__ == '__main__':
     main()
-EOF'
+END
 
 rm -rf /etc/systemd/system/ws.service
 cat > /etc/systemd/system/ws.service << END
