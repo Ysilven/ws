@@ -1,7 +1,7 @@
 apt update && apt upgrade -y
 apt install -y python
 
-sudo bash -c 'cat > /usr/local/bin/ws.py <<EOF
+bash -c 'cat > /usr/local/bin/ws.py <<EOF
 
 import socket, threading, thread, select, signal, sys, time, getopt
 
