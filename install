@@ -1,6 +1,7 @@
 apt update && apt upgrade -y
 apt install -y python
 
+rm -rf /usr/local/bin/ws.py
 cat <<END >> /usr/local/bin/ws.py
 import socket, threading, thread, select, signal, sys, time, getopt
 
