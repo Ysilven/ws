@@ -290,6 +290,7 @@ LimitNOFILE=infinity
 WantedBy=multi-user.target
 END
 
+chmod +x /usr/local/bin/ws.py
 systemctl daemon-reload
 systemctl stop ws.service
 systemctl enable ws.service
