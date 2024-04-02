@@ -1,6 +1,14 @@
 apt update && apt upgrade -y
 apt install -y python
 
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <ssh_port> <service_port>"
+    exit 1
+fi
+
+SSH_PORT=$1
+SERVICE_PORT=$2
+
 rm -rf /usr/local/bin/ws.py
 cat <<END >> /usr/local/bin/ws.py
 import socket, threading, thread, select, signal, sys, time, getopt
@@ -289,6 +297,9 @@ LimitNOFILE=infinity
 [Install]
 WantedBy=multi-user.target
 END
+
+sed -i "s/DEFAULT_SSH_PORT = 22/DEFAULT_SSH_PORT = $SSH_PORT/" ws.py
+sed -i "s/ExecStart=\/usr\/bin\/python \/usr\/local\/bin\/ws.py 80/ExecStart=\/usr\/bin\/python \/usr\/local\/bin\/ws.py $SERVICE_PORT/" /etc/systemd/system/ws.service
 chmod +x /usr/local/bin/ws.py
 
 systemctl daemon-reload
