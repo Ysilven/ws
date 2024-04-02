@@ -291,7 +291,7 @@ WantedBy=multi-user.target
 END
 
 systemctl daemon-reload
-systemctl stop ws
-systemctl enable ws
-systemctl restart ws
-systemctl status ws
+systemctl stop ws.service
+systemctl enable ws.service
+systemctl restart ws.service
+systemctl status --no-pager ws.service
